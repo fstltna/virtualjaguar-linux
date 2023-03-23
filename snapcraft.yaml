@@ -1,0 +1,29 @@
+name: virtualjaguar-linux # you probably want to 'snapcraft register <name>'
+base: core18 # the base snap is the execution environment for this snap
+version: '1.0.7' # just for humans, typically '1.2+git' or '1.3.2'
+summary: Atari Jaguar emulator
+description: |
+  Atari Jaguar emulator
+
+grade: stable # must be 'stable' to release into candidate/stable channels
+confinement: strict # use 'strict' once you have the right plugs and slots
+icon:  virtualjaguar_icon.png
+title: Virtual Jaguar
+
+apps:
+  virtualjaguar:
+    command: vj
+parts:
+  virtualjaguar:
+    # See 'snapcraft plugins'
+    plugin: dump
+    source: .
+#    build-packages: [default-jre]
+#    stage-packages: [default-jre]
+    organize:
+      virtualjaguar: build/
+      virtualjaguar.1: man/man1/
+
+architectures:
+  - build-on: amd64
+
